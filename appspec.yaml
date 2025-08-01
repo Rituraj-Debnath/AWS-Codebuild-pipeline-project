@@ -10,3 +10,26 @@ hooks:
     - location: start_container.sh
       timeout: 300
       runas: root
+
+
+      # we could run the commands directly from inside the appspec file but if we have more commands then it becomes hard to maintain, otherwise we could use the below here :
+
+    
+     
+#version: 0.0
+#os: linux
+
+#hooks:
+  #ApplicationStop:
+    #- runas: root
+   #   timeout: 300
+   #   run: |
+   #     docker stop rex03/simple-python-app || true
+   #     docker rm rex03/simple-python-app || true
+
+ # AfterInstall:
+ #   - runas: root
+ #     timeout: 300
+ #     run: |
+ #       docker pull rex03/simple-python-app
+ #       docker run -d  -p 80:5000 rex03/simple-python-app 

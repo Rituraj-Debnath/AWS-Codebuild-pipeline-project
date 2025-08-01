@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
+docker stop  rex03/simple-python-app || true
+docker rm hrex03/simple-python-app || true
 
-# Stop the running container (if any)
-echo "Hi"
