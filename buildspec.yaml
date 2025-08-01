@@ -1,0 +1,33 @@
+version: 0.2
+
+
+
+#env:
+  #parameter-store:
+    #DOCKER_REGISTRY_USERNAME: /python-app/docker-creds/username
+    #DOCKER_REGISTRY_PASSWORD: /python-app/docker-creds/pass-token
+    #DOCKER_REGISTRY_URL: docker-url
+
+phases:  #jobs just like in actions
+  install:
+    runtime-versions:
+      python: 3.11
+  
+  pre_build:
+    commands:
+      - pip install -r requirements.txt
+      - echo "Logging in to Docker"
+      - echo "dckr_pat_SuMabcd-change-it-accordingly" | docker login -u "rex03" --password-stdin
+      - echo "Docker login successfulll !!!"
+
+  build:
+    commands:
+      
+      - echo "Building Docker image"
+      - docker build -t "docker.io/rex03/simple-python-app:latest" .
+      - docker push "docker.io/rex03/simple-python-app:latest"
+
+  post_build:
+    commands:
+      - echo "Build Successful"
+    
