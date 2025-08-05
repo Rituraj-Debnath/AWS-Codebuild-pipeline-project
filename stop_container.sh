@@ -1,4 +1,6 @@
 #!/bin/bash
-docker stop  rex03/simple-python-app || true
-docker rm rex03/simple-python-app || true
+set -e
+
+# Stop the running container (if any)
+echo "is it working?"
 
